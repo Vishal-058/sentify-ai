@@ -6,7 +6,7 @@ import re
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 # Set up a wide, dark-themed page profile
-st.set_page_config(page_title="Sentify AI", page_icon="🎬", layout="centered")
+st.set_page_config(page_title="Sentify AI", layout="centered")
 
 # --- CUSTOM CSS FOR PREMIUM LOOK ---
 st.markdown("""
@@ -89,11 +89,11 @@ with st.container(border=True):
     if "input_text" not in st.session_state:
         st.session_state.input_text = ""
 
-    if col_c1.button("✨ Masterpiece!"):
+    if col_c1.button(" Masterpiece!"):
         st.session_state.input_text = "Absolute masterpiece! The cinematography was stellar and the acting was top notch."
-    if col_c2.button("🗑️ Garbage & Never"):
+    if col_c2.button("Garbage & Never"):
         st.session_state.input_text = "garbage it is and i am never gonna watch movie from now on."
-    if col_c3.button("🔄 Never Regret"):
+    if col_c3.button("Never Regret"):
         st.session_state.input_text = "i am never gonna regret watching this movie."
 
     # Main input field
@@ -101,7 +101,7 @@ with st.container(border=True):
 
 # --- INFERENCE EXECUTION ---
 st.write("")
-if st.button("🚀 Compute ", type="primary", use_container_width=True):
+if st.button(" Compute ", type="primary", use_container_width=True):
     if not user_review.strip():
         st.warning("Please input some text context first.")
     elif model is None or tokenizer is None:  # Bone fix verified here!
@@ -116,7 +116,7 @@ if st.button("🚀 Compute ", type="primary", use_container_width=True):
         
         # Results Presentation Card
         with st.container(border=True):
-            st.subheader("📊 Analytical Metrics")
+            st.subheader(" Analytical Metrics")
             col1, col2 = st.columns([1, 1.2], gap="large")
             
             if prediction >= 0.5:
