@@ -17,7 +17,7 @@ def clean_text(text):
 
 print("Loading saved model weights and custom tokenizer...")
 try:
-    model = tf.keras.models.load_model('sentiment_gru_model.h5')
+    model = tf.keras.models.load_model('sentiment_gru_model.keras')
     with open('tokenizer.pickle', 'rb') as handle:
         tokenizer = pickle.load(handle)
     print("Model and Tokenizer successfully loaded!")
