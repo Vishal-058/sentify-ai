@@ -88,5 +88,5 @@ history = model.fit(
 )
 
 # Export the trained neural network
-model.save('sentiment_gru_model.h5')
-print("Complete! Model saved locally as 'sentiment_gru_model.h5'")
+model.save('sentiment_gru_model.keras')
+print("Complete! Model saved locally as 'sentiment_gru_model.keras'")
