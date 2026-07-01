@@ -6,7 +6,7 @@ An end-to-end Natural Language Processing (NLP) application that predicts text s
 
 ---
 
-## 🖥️ User Interface Showcase
+##  User Interface Showcase
 
 | Positive Sentiment Example | Negative Sentiment Example |
 | :---: | :---: |
