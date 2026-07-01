@@ -5,7 +5,6 @@ import pickle
 import re
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
-# Set up a wide, dark-themed page layout
 st.set_page_config(page_title="Sentify AI", layout="centered")
 
 # --- CUSTOM CSS FOR PREMIUM LOOK ---
@@ -94,12 +93,12 @@ def clean_text(text):
 
 # --- APP HEADER ---
 st.markdown("<h1>Sentify.AI</h1>", unsafe_allow_html=True)
-st.markdown("<p style='color: #a5b4fc; font-size:16px; margin-top: -10px; font-weight: 500;'>✨ Know the emotion of reviews</p>", unsafe_allow_html=True)
+st.markdown("<p style='color: #a5b4fc; font-size:16px; margin-top: -10px; font-weight: 500;'> Know the emotion of reviews</p>", unsafe_allow_html=True)
 st.write("")
 
 # --- INTERACTIVE CONTENT BLOCK ---
 with st.container(border=True):
-    st.markdown("<p style='font-weight: 500; margin-bottom: 5px;'>💡 Quick Test Templates:</p>", unsafe_allow_html=True)
+    st.markdown("<p style='font-weight: 500; margin-bottom: 5px;'> Quick Test Templates:</p>", unsafe_allow_html=True)
     col_c1, col_c2, col_c3 = st.columns(3)
 
     if "input_text" not in st.session_state:
@@ -127,17 +126,17 @@ if st.button(" Compute ", type="primary", use_container_width=True):
         cleaned_input = clean_text(user_review)
         sequence = tokenizer.texts_to_sequences([cleaned_input])
 
-        # 🛑 GIBBERISH / OOV GUARDRAIL
+        # GIBBERISH / OOV GUARDRAIL
         # Intercepts strings that break into nothing or map entirely to the OOV token index (1)
         if len(sequence[0]) == 0 or all(token == 1 for token in sequence[0]):
-            st.error("🤔 **Low Confidence Detection:** The system cannot recognize these words. Please enter a valid sentence!")
+            st.error(" **Low Confidence Detection:** The system cannot recognize these words. Please enter a valid sentence!")
         else:
-            # ⚠️ SHORT INPUT WARNING
+            #  SHORT INPUT WARNING
             # This model was trained on full-length movie reviews (~230 words avg).
             # Very short inputs (especially short negations like "not good") fall
             # outside that distribution and predictions are less reliable.
             if len(cleaned_input.split()) < 5:
-                st.info("⚠️ **Heads up:** Short inputs (especially negations like 'not good') are less reliable. Try writing a fuller sentence for a more accurate result.")
+                st.info(" **Heads up:** Short inputs (especially negations like 'not good') are less reliable. Try writing a fuller sentence for a more accurate result.")
             # Padding must match training exactly: padding='post', truncating='pre'
             padded_sequence = pad_sequences(sequence, maxlen=MAX_LENGTH, padding='post', truncating='pre')
 
@@ -153,7 +152,7 @@ if st.button(" Compute ", type="primary", use_container_width=True):
                     confidence = prediction * 100
                     st.balloons()
                     with col1:
-                        st.markdown(f"<div class='sentiment-box pos-box'>🟢 POSITIVE SENTIMENT</div>", unsafe_allow_html=True)
+                        st.markdown(f"<div class='sentiment-box pos-box'> POSITIVE SENTIMENT</div>", unsafe_allow_html=True)
                     with col2:
                         st.markdown(f"<p style='margin-bottom:2px; font-size:14px; color:#94a3b8;'>Model Confidence Rating</p>", unsafe_allow_html=True)
                         st.progress(int(confidence))
@@ -161,7 +160,7 @@ if st.button(" Compute ", type="primary", use_container_width=True):
                 else:
                     confidence = (1 - prediction) * 100
                     with col1:
-                        st.markdown(f"<div class='sentiment-box neg-box'>🔴 NEGATIVE SENTIMENT</div>", unsafe_allow_html=True)
+                        st.markdown(f"<div class='sentiment-box neg-box'> NEGATIVE SENTIMENT</div>", unsafe_allow_html=True)
                     with col2:
                         st.markdown(f"<p style='margin-bottom:2px; font-size:14px; color:#94a3b8;'>Model Confidence Rating</p>", unsafe_allow_html=True)
                         st.progress(int(confidence))
