@@ -6,6 +6,13 @@ An end-to-end Natural Language Processing (NLP) application that predicts text s
 
 ---
 
+## 🖥️ User Interface Showcase
+
+| Positive Sentiment Example | Negative Sentiment Example |
+| :---: | :---: |
+| ![Positive Review](assets/positive.png) | ![Negative Review](assets/negative.png) |
+
+
 ##  Model Architecture & Features
 * **Data Source:** Stanford NLP IMDB Dataset (via Hugging Face).
 * **Text Preprocessing:** Custom regex pipeline removing HTML artifacts, punctuation, and optimizing text casing.
